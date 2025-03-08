@@ -1,0 +1,80 @@
+[gd_scene load_steps=5 format=3 uid="uid://i3ssqllmq80e"]
+
+[ext_resource type="PackedScene" uid="uid://dioyvfpbjrlfu" path="res://ball.tscn" id="1_80nbo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mwb40"]
+size = Vector2(16, 120)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_80nbo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e2o6t"]
+size = Vector2(64, 646)
+
+[node name="Game" type="Node2D"]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Player"]
+offset_left = 40.0
+offset_top = 200.0
+offset_right = 56.0
+offset_bottom = 320.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(48, 260)
+shape = SubResource("RectangleShape2D_mwb40")
+
+[node name="CPU" type="CharacterBody2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CPU"]
+offset_left = 1096.0
+offset_top = 200.0
+offset_right = 1112.0
+offset_bottom = 320.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CPU"]
+position = Vector2(1104, 260)
+shape = SubResource("RectangleShape2D_mwb40")
+
+[node name="TopWall" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopWall"]
+shape = SubResource("WorldBoundaryShape2D_80nbo")
+
+[node name="BottomWall" type="Area2D" parent="."]
+position = Vector2(0, 648)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomWall"]
+position = Vector2(32, 0)
+shape = SubResource("WorldBoundaryShape2D_80nbo")
+
+[node name="CPUScore" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CPUScore"]
+position = Vector2(-32, 324)
+shape = SubResource("RectangleShape2D_e2o6t")
+
+[node name="PlayerScore" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerScore"]
+position = Vector2(1184, 323)
+shape = SubResource("RectangleShape2D_e2o6t")
+
+[node name="Ball" parent="." instance=ExtResource("1_80nbo")]
+position = Vector2(568, 272)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PlayerScoreLabel" type="Label" parent="CanvasLayer"]
+offset_left = 224.0
+offset_top = 32.0
+offset_right = 264.0
+offset_bottom = 55.0
+text = "0"
+
+[node name="CPUScoreLabel" type="Label" parent="CanvasLayer"]
+offset_left = 856.0
+offset_top = 40.0
+offset_right = 896.0
+offset_bottom = 63.0
+text = "0"

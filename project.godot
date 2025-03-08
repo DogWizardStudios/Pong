@@ -11,5 +11,10 @@ config_version=5
 [application]
 
 config/name="Pong"
+run/main_scene="res://game.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[rendering]
+
+environment/defaults/default_clear_color=Color(0.019632, 0.0661983, 0.150964, 1)
