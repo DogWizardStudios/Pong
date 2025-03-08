@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://i3ssqllmq80e"]
+[gd_scene load_steps=8 format=3 uid="uid://i3ssqllmq80e"]
 
 [ext_resource type="PackedScene" uid="uid://dioyvfpbjrlfu" path="res://ball.tscn" id="1_80nbo"]
 [ext_resource type="Script" uid="uid://bx04j8barlk77" path="res://player.gd" id="1_e2o6t"]
+[ext_resource type="Script" uid="uid://cvjmp3yf41u7m" path="res://game.gd" id="1_feb5d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mwb40"]
 size = Vector2(16, 120)
@@ -16,6 +17,7 @@ size = Vector2(1152, 45)
 size = Vector2(64, 648)
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_feb5d")
 
 [node name="Player" type="CharacterBody2D" parent="."]
 slide_on_ceiling = false
@@ -87,3 +89,6 @@ offset_top = 40.0
 offset_right = 896.0
 offset_bottom = 63.0
 text = "0"
+
+[connection signal="area_entered" from="CPUScore" to="Ball" method="_on_cpu_score_area_entered"]
+[connection signal="area_entered" from="PlayerScore" to="Ball" method="_on_player_score_area_entered"]
