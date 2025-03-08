@@ -1,18 +1,26 @@
-[gd_scene load_steps=5 format=3 uid="uid://i3ssqllmq80e"]
+[gd_scene load_steps=7 format=3 uid="uid://i3ssqllmq80e"]
 
 [ext_resource type="PackedScene" uid="uid://dioyvfpbjrlfu" path="res://ball.tscn" id="1_80nbo"]
+[ext_resource type="Script" uid="uid://bx04j8barlk77" path="res://player.gd" id="1_e2o6t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mwb40"]
 size = Vector2(16, 120)
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_80nbo"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_feb5d"]
+size = Vector2(1152, 176)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fc0e3"]
+size = Vector2(1152, 45)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e2o6t"]
-size = Vector2(64, 646)
+size = Vector2(64, 648)
 
 [node name="Game" type="Node2D"]
 
 [node name="Player" type="CharacterBody2D" parent="."]
+slide_on_ceiling = false
+floor_block_on_wall = false
+script = ExtResource("1_e2o6t")
 
 [node name="ColorRect" type="ColorRect" parent="Player"]
 offset_left = 40.0
@@ -36,17 +44,18 @@ offset_bottom = 320.0
 position = Vector2(1104, 260)
 shape = SubResource("RectangleShape2D_mwb40")
 
-[node name="TopWall" type="Area2D" parent="."]
+[node name="TopWall" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TopWall"]
-shape = SubResource("WorldBoundaryShape2D_80nbo")
+position = Vector2(576, -88)
+shape = SubResource("RectangleShape2D_feb5d")
 
-[node name="BottomWall" type="Area2D" parent="."]
+[node name="BottomWall" type="StaticBody2D" parent="."]
 position = Vector2(0, 648)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BottomWall"]
-position = Vector2(32, 0)
-shape = SubResource("WorldBoundaryShape2D_80nbo")
+position = Vector2(576, 22.5)
+shape = SubResource("RectangleShape2D_fc0e3")
 
 [node name="CPUScore" type="Area2D" parent="."]
 
@@ -57,7 +66,7 @@ shape = SubResource("RectangleShape2D_e2o6t")
 [node name="PlayerScore" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerScore"]
-position = Vector2(1184, 323)
+position = Vector2(1184, 324)
 shape = SubResource("RectangleShape2D_e2o6t")
 
 [node name="Ball" parent="." instance=ExtResource("1_80nbo")]
